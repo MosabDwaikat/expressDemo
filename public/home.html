@@ -1,0 +1,25 @@
+<html>
+  <head> </head>
+  <body>
+    <h1>hi</h1>
+    <img src="http://localhost:3000/kaisa.jpg" alt="" width="500px" />
+    <ul id="ul"></ul>
+  </body>
+</html>
+<script>
+  async function src() {
+    const response = await fetch("http://localhost:3000/");
+    const jsonData = await response.json();
+  }
+  async function a() {
+    const response = await fetch("http://localhost:3000/");
+    const jsonData = await response.json();
+    const ul = document.getElementById("ul");
+    jsonData.map((e) => {
+      const li = document.createElement("li");
+      li.textContent = e.title;
+      ul.appendChild(li);
+    });
+  }
+  a();
+</script>
