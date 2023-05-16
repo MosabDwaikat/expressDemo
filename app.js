@@ -1,28 +1,17 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 5000;
+const cors = require("cors");
 const list = require("./todos/list");
 const todos = require("./todos/Todos");
 
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.static("public"));
 app.use("/todos", todos);
 
 app.get("/", (req, res) => {
   res.status(200);
   res.send(list);
-});
-app.delete("/", (req, res) => {
-  if (list.length === 0) {
-    res.status(422);
-
-    res.send("no objects are available for deletion");
-  } else {
-    const i = Math.floor(Math.random() * list.length);
-    list.splice(i, 1);
-    res.status(204);
-
-    res.send();
-  }
 });
 
 app.listen(port, () => {
